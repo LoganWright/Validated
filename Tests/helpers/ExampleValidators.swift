@@ -8,6 +8,11 @@
 
 @testable import Validated
 
+#if swift(>=3.0)
+#else
+    public typealias Collection = CollectionType
+#endif
+
 // Example validators that are used throughout the unit tests. These should also be a good starting point for your custom `Validator` types.
 
 struct EmptyStringValidator: Validator {
@@ -32,6 +37,12 @@ struct ContainsYorZ: Validator {
     }
 }
 
+struct SumLarger20Validator: Validator {
+    static func validate(value: [Int]) -> Bool {
+        return value.reduce(0, combine: +) > 20
+    }
+}
+
 struct EmptyCollectionValidator<T: Collection>: Validator {
     static func validate(value: T) -> Bool {
         return value.isEmpty
@@ -41,11 +52,5 @@ struct EmptyCollectionValidator<T: Collection>: Validator {
 struct CountGreater10Validator<T: Collection>: Validator {
     static func validate(value: T) -> Bool {
         return value.count > 10
-    }
-}
-
-struct SumLarger20Validator: Validator {
-    static func validate(value: [Int]) -> Bool {
-        return value.reduce(0, combine: +) > 20
     }
 }

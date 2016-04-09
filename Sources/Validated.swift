@@ -1,3 +1,8 @@
+#if swift(>=3.0)
+#else
+    public typealias ErrorProtocol = ErrorType
+#endif
+
 /// This protocol needs to be implemented in order to add a requirement to
 /// a wrapped type.
 /// Implementers receive the wrapped type and need to determine if its values
