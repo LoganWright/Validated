@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		25C79AA81C7EA40B00F76B49 /* Validated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C79A9D1C7EA40B00F76B49 /* Validated.framework */; };
-		25C79AB81C7EA5A800F76B49 /* Validated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C79AB71C7EA5A800F76B49 /* Validated.swift */; };
+		806ACA8F1CB8CF1000A06939 /* Validated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806ACA8E1CB8CF1000A06939 /* Validated.swift */; };
+		806ACA901CB8CF1000A06939 /* Validated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806ACA8E1CB8CF1000A06939 /* Validated.swift */; };
+		806ACA911CB8CF1000A06939 /* Validated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806ACA8E1CB8CF1000A06939 /* Validated.swift */; };
+		806ACA921CB8CF1000A06939 /* Validated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806ACA8E1CB8CF1000A06939 /* Validated.swift */; };
 		BC9786571C84A2D900A68A31 /* Validated.h in Headers */ = {isa = PBXBuildFile; fileRef = BCC703501C8497B500880C4C /* Validated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC9786581C84A2EC00A68A31 /* Validated.h in Headers */ = {isa = PBXBuildFile; fileRef = BCC703501C8497B500880C4C /* Validated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BC9786671C84A44D00A68A31 /* Validated.h in Headers */ = {isa = PBXBuildFile; fileRef = BCC703501C8497B500880C4C /* Validated.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,7 +34,7 @@
 /* Begin PBXFileReference section */
 		25C79A9D1C7EA40B00F76B49 /* Validated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Validated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C79AA71C7EA40B00F76B49 /* ValidatedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ValidatedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		25C79AB71C7EA5A800F76B49 /* Validated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validated.swift; sourceTree = "<group>"; };
+		806ACA8E1CB8CF1000A06939 /* Validated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validated.swift; path = Sources/Validated.swift; sourceTree = SOURCE_ROOT; };
 		BC97865E1C84A30C00A68A31 /* Validated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Validated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC97866D1C84A48E00A68A31 /* Validated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Validated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9786891C84A90100A68A31 /* tests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = tests.plist; sourceTree = "<group>"; };
@@ -108,7 +111,7 @@
 		25C79A9F1C7EA40B00F76B49 /* Validated */ = {
 			isa = PBXGroup;
 			children = (
-				25C79AB71C7EA5A800F76B49 /* Validated.swift */,
+				806ACA8E1CB8CF1000A06939 /* Validated.swift */,
 				BCC7034A1C8497B500880C4C /* configuration */,
 			);
 			path = Validated;
@@ -285,7 +288,7 @@
 		25C79A941C7EA40B00F76B49 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Benjamin Encz";
 				TargetAttributes = {
@@ -370,7 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25C79AB81C7EA5A800F76B49 /* Validated.swift in Sources */,
+				806ACA8F1CB8CF1000A06939 /* Validated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806ACA911CB8CF1000A06939 /* Validated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806ACA921CB8CF1000A06939 /* Validated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806ACA901CB8CF1000A06939 /* Validated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +516,7 @@
 		25C79AB21C7EA40B00F76B49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -522,6 +529,7 @@
 		25C79AB31C7EA40B00F76B49 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -549,12 +557,14 @@
 		BC9786641C84A30C00A68A31 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TVOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Debug;
@@ -562,6 +572,7 @@
 		BC9786651C84A30C00A68A31 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -576,12 +587,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WATCHOS_DEPLOYMENT_TARGET = 2.1;
 			};
 			name = Debug;
@@ -590,6 +603,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -603,6 +617,7 @@
 		BCC703611C849A9D00880C4C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -613,12 +628,14 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		BCC703621C849A9D00880C4C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;

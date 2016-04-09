@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Validated"
-  s.version          = "2.0.0"
+  s.version          = "3.0.0"
   s.summary          = "A Swift μ-Library for Somewhat Dependent Types"
   s.description      = <<-DESC
                         Validated is a μ-library (~50 Source Lines of Code) that allows you make better use of Swift's type system
@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target    = '9.0'
   s.watchos.deployment_target = '2.0'
   s.requires_arc = true
-  s.source_files     = 'Validated/**/*.swift'
+  s.source_files     = 'Sources/**/*.swift'
 end

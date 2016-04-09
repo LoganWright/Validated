@@ -10,20 +10,20 @@
 /// }
 /// ~~~
 public protocol Validator {
-    typealias WrappedType
+    associatedtype WrappedType
 
     /// Validates if a value of the wrapped type fullfills the requirements of the
     /// wrapper type.
     ///
-    /// - parameter validate: An instance of the `WrappedType`  
+    /// - parameter validate: An instance of the `WrappedType`
     /// - returns: A `Bool` indicating success(`true`)/failure(`false`) of the validation
     static func validate(value: WrappedType) -> Bool
 }
 
 
-/// Error that is thrown when a validation fails. Proivdes the validator type and 
+/// Error that is thrown when a validation fails. Proivdes the validator type and
 /// the value that failed validation
-public struct ValidatorError: ErrorType, CustomStringConvertible {
+public struct ValidatorError: ErrorProtocol, CustomStringConvertible {
     /// The value that failed validation.
     public let wrapperValue: Any
     /// Type of a specific `Validator`. `Any` is used because `Validator` has associated type requirements.
@@ -37,15 +37,15 @@ public struct ValidatorError: ErrorType, CustomStringConvertible {
 /// Wraps a type together with one validator. Provides a failable initializer
 /// that will only return a value of `Validated` if the provided `WrapperType` value
 /// fulfills the requirements of the specified `Validator`.
-public struct Validated<WrapperType, V: Validator where V.WrappedType == WrapperType> {
+public struct Validated<V: Validator> {
     /// The value that passes the defined `Validator`.
     ///
     /// If you are able to access this property; it means the wrappedType passes the validator.
-    public let value: WrapperType
+    public let value: V.WrappedType
 
-    /// Throwing initializer that will *not* throw an error if the provided value fulfills the requirements 
+    /// Throwing initializer that will *not* throw an error if the provided value fulfills the requirements
     /// specified by the `Validator`.
-    public init(_ value: WrapperType) throws {
+    public init(_ value: V.WrappedType) throws {
         guard V.validate(value) else {
             throw ValidatorError(
                 wrapperValue: value,
@@ -56,7 +56,7 @@ public struct Validated<WrapperType, V: Validator where V.WrappedType == Wrapper
     }
 
     /// Failible initializer that will only succeed if the provided value fulfills the requirements specified by the `Validator`.
-    public init?(value: WrapperType) {
+    public init?(value: V.WrappedType) {
         try? self.init(value)
     }
 }
@@ -65,7 +65,7 @@ public struct Validated<WrapperType, V: Validator where V.WrappedType == Wrapper
 public struct And<
     V1: Validator,
     V2: Validator where
-        V1.WrappedType == V2.WrappedType>: Validator {
+V1.WrappedType == V2.WrappedType>: Validator {
     public static func validate(value: V1.WrappedType) -> Bool {
         return V1.validate(value) && V2.validate(value)
     }
@@ -75,7 +75,7 @@ public struct And<
 public struct Or<
     V1: Validator,
     V2: Validator where
-        V1.WrappedType == V2.WrappedType>: Validator {
+V1.WrappedType == V2.WrappedType>: Validator {
     public static func validate(value: V1.WrappedType) -> Bool {
         return V1.validate(value) || V2.validate(value)
     }

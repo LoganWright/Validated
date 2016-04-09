@@ -32,13 +32,13 @@ struct ContainsYorZ: Validator {
     }
 }
 
-struct EmptyCollectionValidator<T: CollectionType>: Validator {
+struct EmptyCollectionValidator<T: Collection>: Validator {
     static func validate(value: T) -> Bool {
         return value.isEmpty
     }
 }
 
-struct CountGreater10Validator<T: CollectionType>: Validator {
+struct CountGreater10Validator<T: Collection>: Validator {
     static func validate(value: T) -> Bool {
         return value.count > 10
     }

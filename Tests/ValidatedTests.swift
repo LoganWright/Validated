@@ -11,7 +11,7 @@ class ValidatedTests: XCTestCase {
 
     func testValidatesEmptyString() {
         // Define a type for a non-empty string
-        typealias NonEmptyString = Validated<String, Not<EmptyStringValidator>>
+        typealias NonEmptyString = Validated<Not<EmptyStringValidator>>
         // Create an empty string
         let valueNotValidated = NonEmptyString(value: "")?.value
         XCTAssertNil(valueNotValidated)
@@ -23,7 +23,7 @@ class ValidatedTests: XCTestCase {
 
     func testValidatesAnyEmptyCollection() {
         // Define a type for a non-empty collection
-        typealias NonEmptyListOfStrings = Validated<[String], Not<EmptyCollectionValidator<[String]>>>
+        typealias NonEmptyListOfStrings = Validated<Not<EmptyCollectionValidator<[String]>>>
         // Create an empty list of strings
         let valueNotValidated = NonEmptyListOfStrings(value: [])?.value
         XCTAssertNil(valueNotValidated)
@@ -34,7 +34,7 @@ class ValidatedTests: XCTestCase {
 
     func testSumLarger20() {
         // Define a type for an array of ints that has a sum larger 20
-        typealias SumLarger20Array = Validated<[Int], SumLarger20Validator>
+        typealias SumLarger20Array = Validated<SumLarger20Validator>
 
         let valueNotValidated = SumLarger20Array(value: [8,8])?.value
         XCTAssertNil(valueNotValidated)
@@ -47,7 +47,7 @@ class ValidatedTests: XCTestCase {
 
     func testValidatesCountGreater10() {
         // Define a type for a collection with more than 10 elements
-        typealias MoreThan10ElementsIntArray = Validated<[Int], CountGreater10Validator<[Int]>>
+        typealias MoreThan10ElementsIntArray = Validated<CountGreater10Validator<[Int]>>
 
         let valueNotValidated = MoreThan10ElementsIntArray(value: [1,2,3,4,5,6])?.value
         XCTAssertNil(valueNotValidated)
@@ -60,7 +60,7 @@ class ValidatedTests: XCTestCase {
 
     func testValidatesLoggedInUser() {
         // Define a type for a logged in user
-        typealias LoggedInUser = Validated<User, LoggedInValidator>
+        typealias LoggedInUser = Validated<LoggedInValidator>
 
         let valueNotValidated = LoggedInUser(
             value: User(username: "User", loggedIn: false)
@@ -78,7 +78,7 @@ class ValidatedTests: XCTestCase {
     func testValidatesEmptyStringAndAllCaps1() {
         // Define a type for a non-empty all caps latin string
         typealias AllCapsNonEmptyString =
-            Validated<String, And<Not<EmptyStringValidator>, AllCapsLatinStringValidator>>
+            Validated<And<Not<EmptyStringValidator>, AllCapsLatinStringValidator>>
 
         // Create an empty string
         let valueNotValidated = AllCapsNonEmptyString(value: "")?.value
@@ -95,7 +95,7 @@ class ValidatedTests: XCTestCase {
 
     func testValidatesCountGreater10AndSumLarger20() {
         typealias MoreThan10ElementsWithSumGreater20 =
-            Validated<[Int], And<CountGreater10Validator<[Int]>, SumLarger20Validator>>
+            Validated<And<CountGreater10Validator<[Int]>, SumLarger20Validator>>
 
         let valueNotValidated = MoreThan10ElementsWithSumGreater20(value: [100,2,400,5,6])?.value
         XCTAssertNil(valueNotValidated)
@@ -115,7 +115,7 @@ class ValidatedTests: XCTestCase {
 
     func testValidatesEmptyStringAndAllCapsContainsYorZ() {
         typealias AllCapsNonEmptyStringWithYorZ =
-            Validated<String, And<And<Not<EmptyStringValidator>, AllCapsLatinStringValidator>, ContainsYorZ>>
+            Validated<And<And<Not<EmptyStringValidator>, AllCapsLatinStringValidator>, ContainsYorZ>>
 
         // Create a non-complying string
         let valueNotValidated = AllCapsNonEmptyStringWithYorZ(value: "ABCDEF")?.value
@@ -131,7 +131,7 @@ class ValidatedTests: XCTestCase {
     func testValidatesEmptyStringAndAllCaps2() {
         // Define a type for a non-empty all caps latin string
         typealias AllCapsNonEmptyString =
-            Validated<String, And<Not<EmptyStringValidator>, AllCapsLatinStringValidator>>
+            Validated<And<Not<EmptyStringValidator>, AllCapsLatinStringValidator>>
 
         // Create an empty string
         let valueNotValidated = AllCapsNonEmptyString(value: "")?.value
@@ -149,7 +149,7 @@ class ValidatedTests: XCTestCase {
     func testValidatesEmptyStringOrAllCaps() {
         // Define a type for an empty or all caps latin string
         typealias AllCapsOrEmptyString =
-            Validated<String, Or<EmptyStringValidator, AllCapsLatinStringValidator>>
+            Validated<Or<EmptyStringValidator, AllCapsLatinStringValidator>>
         
         // Create an empty string
         let valueValidated1 = AllCapsOrEmptyString(value: "")?.value
@@ -167,7 +167,7 @@ class ValidatedTests: XCTestCase {
     func testValidatesNonEmpty() {
         // Define a type for a non-empty string
         typealias AllCapsNonEmptyString =
-            Validated<String, Not<EmptyStringValidator>>
+            Validated<Not<EmptyStringValidator>>
         
         // Create an empty string
         let valueNotValidated = AllCapsNonEmptyString(value: "")?.value
@@ -182,7 +182,7 @@ class ValidatedTests: XCTestCase {
 
     func testThrowingInitializer() {
         // Define a type for a non-empty string
-        typealias NonEmptyString = Validated<String, Not<EmptyStringValidator>>
+        typealias NonEmptyString = Validated<Not<EmptyStringValidator>>
         // Create an empty string
         do {
             _ = try NonEmptyString("").value
