@@ -22,7 +22,7 @@ public protocol Validator {
     ///
     /// - parameter validate: An instance of the `WrappedType`
     /// - returns: A `Bool` indicating success(`true`)/failure(`false`) of the validation
-    static func validate(value: WrappedType) -> Bool
+    static func validate(_ value: WrappedType) -> Bool
 }
 
 
@@ -42,15 +42,15 @@ public struct ValidatorError: ErrorProtocol, CustomStringConvertible {
 /// Wraps a type together with one validator. Provides a failable initializer
 /// that will only return a value of `Validated` if the provided `WrapperType` value
 /// fulfills the requirements of the specified `Validator`.
-public struct Validated<V: Validator> {
+public struct Validated<WrapperType, V: Validator where V.WrappedType == WrapperType> {
     /// The value that passes the defined `Validator`.
     ///
     /// If you are able to access this property; it means the wrappedType passes the validator.
-    public let value: V.WrappedType
+    public let value: WrapperType
 
     /// Throwing initializer that will *not* throw an error if the provided value fulfills the requirements
     /// specified by the `Validator`.
-    public init(_ value: V.WrappedType) throws {
+    public init(_ value: WrapperType) throws {
         guard V.validate(value) else {
             throw ValidatorError(
                 wrapperValue: value,
@@ -61,7 +61,7 @@ public struct Validated<V: Validator> {
     }
 
     /// Failible initializer that will only succeed if the provided value fulfills the requirements specified by the `Validator`.
-    public init?(value: V.WrappedType) {
+    public init?(value: WrapperType) {
         try? self.init(value)
     }
 }
@@ -71,7 +71,7 @@ public struct And<
     V1: Validator,
     V2: Validator where
 V1.WrappedType == V2.WrappedType>: Validator {
-    public static func validate(value: V1.WrappedType) -> Bool {
+    public static func validate(_ value: V1.WrappedType) -> Bool {
         return V1.validate(value) && V2.validate(value)
     }
 }
@@ -81,14 +81,14 @@ public struct Or<
     V1: Validator,
     V2: Validator where
 V1.WrappedType == V2.WrappedType>: Validator {
-    public static func validate(value: V1.WrappedType) -> Bool {
+    public static func validate(_ value: V1.WrappedType) -> Bool {
         return V1.validate(value) || V2.validate(value)
     }
 }
 
 /// Validator wrapper which is valid when `V1` validated to `false`.
 public struct Not<V1: Validator>: Validator {
-    public static func validate(value: V1.WrappedType) -> Bool {
+    public static func validate(_ value: V1.WrappedType) -> Bool {
         return !V1.validate(value)
     }
 }
